@@ -1,0 +1,14 @@
+/Users/joao/RiderProjects/Shop/concessionária/bin/Debug/net8.0/concessionária
+/Users/joao/RiderProjects/Shop/concessionária/bin/Debug/net8.0/concessionária.deps.json
+/Users/joao/RiderProjects/Shop/concessionária/bin/Debug/net8.0/concessionária.runtimeconfig.json
+/Users/joao/RiderProjects/Shop/concessionária/bin/Debug/net8.0/concessionária.dll
+/Users/joao/RiderProjects/Shop/concessionária/bin/Debug/net8.0/concessionária.pdb
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.GeneratedMSBuildEditorConfig.editorconfig
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.AssemblyInfoInputs.cache
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.AssemblyInfo.cs
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.csproj.CoreCompileInputs.cache
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.dll
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/refint/concessionária.dll
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.pdb
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.genruntimeconfig.cache
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/ref/concessionária.dll
