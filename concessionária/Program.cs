@@ -10,6 +10,7 @@ namespace Shop
         static List<Veiculo> carrinho = new List<Veiculo>();
         static string pathCarrinho = "carrinho.txt";
         static string pathVendas = "vendas.txt";
+        static string pathEstoque = "estoque.txt";
 
         static void Main(string[] args)
         {
@@ -81,13 +82,41 @@ namespace Shop
 
         static void InicializarEstoque()
         {
-            estoque.Add(new Veiculo("Carro", "Chevrolet Onix", 75000, 5));
-            estoque.Add(new Veiculo("Carro", "Toyota Corolla", 130000, 3));
-            estoque.Add(new Veiculo("Carro", "Honda Civic", 120000, 4));
+            estoque.Clear();
 
-            estoque.Add(new Veiculo("Moto", "Honda CG 160", 15000, 10));
-            estoque.Add(new Veiculo("Moto", "Yamaha Fazer 250", 23000, 7));
-            estoque.Add(new Veiculo("Moto", "BMW GS 850", 62000, 2));
+            if (!File.Exists(pathEstoque))
+            {
+                Console.WriteLine("Arquivo de estoque não encontrado, criando um novo vazio...");
+                File.Create(pathEstoque).Close();
+                return;
+            }
+
+            string[] linhas = File.ReadAllLines(pathEstoque);
+            foreach (string linha in linhas)
+            {
+                if (string.IsNullOrWhiteSpace(linha)) continue;
+
+                string[] dados = linha.Split(';');
+                if (dados.Length != 4) continue;
+
+                string tipo = dados[0];
+                string nome = dados[1];
+                if (!double.TryParse(dados[2], out double preco)) continue;
+                if (!int.TryParse(dados[3], out int quantidade)) continue;
+
+                estoque.Add(new Veiculo(tipo, nome, preco, quantidade));
+            }
+        }
+
+        static void SalvarEstoque()
+        {
+            using (StreamWriter sw = new StreamWriter(pathEstoque, false))
+            {
+                foreach (var v in estoque)
+                {
+                    sw.WriteLine($"{v.Tipo};{v.Nome};{v.Preco};{v.Quantidade}");
+                }
+            }
         }
 
         static void ListarVeiculos(string tipo)
@@ -97,7 +126,7 @@ namespace Shop
             int i = 1;
             foreach (var v in estoque)
             {
-                if (v.Tipo == tipo)
+                if (v.Tipo.Equals(tipo, StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine($"{i} - {v.Nome} - R$ {v.Preco:N2} | Estoque: {v.Quantidade}");
                 }
@@ -129,9 +158,10 @@ namespace Shop
                 if (veiculo.Quantidade >= quantidadeDesejada)
                 {
                     carrinho.Add(new Veiculo(veiculo.Tipo, veiculo.Nome, veiculo.Preco, quantidadeDesejada));
-                    veiculo.Quantidade -= quantidadeDesejada; // baixa do estoque
+                    veiculo.Quantidade -= quantidadeDesejada;
                     Console.WriteLine($"{quantidadeDesejada} unidade(s) de {veiculo.Nome} foram adicionadas ao carrinho.");
                     SalvarCarrinho();
+                    SalvarEstoque();
                 }
                 else
                 {
@@ -193,7 +223,6 @@ namespace Shop
 
                 if (qtdRemover >= item.Quantidade)
                 {
-                    // devolve tudo ao estoque
                     var original = estoque.Find(v => v.Nome == item.Nome && v.Tipo == item.Tipo);
                     if (original != null) original.Quantidade += item.Quantidade;
 
@@ -210,6 +239,7 @@ namespace Shop
                 }
 
                 SalvarCarrinho();
+                SalvarEstoque();
             }
             else
             {
@@ -239,7 +269,8 @@ namespace Shop
 
             SalvarVenda();
             carrinho.Clear();
-            File.WriteAllText(pathCarrinho, ""); // limpa carrinho no arquivo
+            File.WriteAllText(pathCarrinho, "");
+            SalvarEstoque();
         }
 
         static void AdicionarProdutoEstoque()
@@ -273,6 +304,7 @@ namespace Shop
             }
 
             estoque.Add(new Veiculo(char.ToUpper(tipo[0]) + tipo.Substring(1).ToLower(), nome, preco, quantidade));
+            SalvarEstoque();
             Console.WriteLine($"{nome} foi adicionado ao estoque com {quantidade} unidades.");
         }
 
@@ -331,7 +363,7 @@ namespace Shop
         public string Tipo { get; set; }
         public string Nome { get; set; }
         public double Preco { get; set; }
-        public int Quantidade { get; set; } // estoque ou qtd no carrinho
+        public int Quantidade { get; set; }
 
         public Veiculo(string tipo, string nome, double preco, int quantidade)
         {
