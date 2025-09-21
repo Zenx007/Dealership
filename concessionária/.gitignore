@@ -1,0 +1,46 @@
+# Compilação
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+
+# Publicação
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+*.tmp
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Configurações do VS Code
+.vscode/
+
+# Pacotes NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Testes
+TestResult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Outros
+launchSettings.json
