@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/joao/RiderProjects/Shop/Shop/Shop.csproj": {}
+    "/Users/joao/RiderProjects/Shop/ConsoleApp1/ConsoleApp1.csproj": {}
   },
   "projects": {
-    "/Users/joao/RiderProjects/Shop/Shop/Shop.csproj": {
+    "/Users/joao/RiderProjects/Shop/ConsoleApp1/ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/joao/RiderProjects/Shop/Shop/Shop.csproj",
-        "projectName": "Shop",
-        "projectPath": "/Users/joao/RiderProjects/Shop/Shop/Shop.csproj",
+        "projectUniqueName": "/Users/joao/RiderProjects/Shop/ConsoleApp1/ConsoleApp1.csproj",
+        "projectName": "ConsoleApp1",
+        "projectPath": "/Users/joao/RiderProjects/Shop/ConsoleApp1/ConsoleApp1.csproj",
         "packagesPath": "/Users/joao/.nuget/packages/",
-        "outputPath": "/Users/joao/RiderProjects/Shop/Shop/obj/",
+        "outputPath": "/Users/joao/RiderProjects/Shop/ConsoleApp1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/joao/.nuget/NuGet/NuGet.Config"

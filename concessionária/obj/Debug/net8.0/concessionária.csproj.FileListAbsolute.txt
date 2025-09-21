@@ -7,6 +7,7 @@
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.AssemblyInfoInputs.cache
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.AssemblyInfo.cs
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.csproj.CoreCompileInputs.cache
+/Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.sourcelink.json
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.dll
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/refint/concessionária.dll
 /Users/joao/RiderProjects/Shop/concessionária/obj/Debug/net8.0/concessionária.pdb
