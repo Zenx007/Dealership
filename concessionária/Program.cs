@@ -34,9 +34,10 @@ namespace Shop
                 DesenharLinhaTexto("5 - Finalizar Compra", ConsoleColor.Cyan);
                 DesenharLinhaSeparadora();
                 DesenharLinhaTexto("6 - Adicionar Produto no Estoque", ConsoleColor.Yellow);
-                DesenharLinhaTexto("7 - Mostrar Itens Vendidos", ConsoleColor.Yellow);
+                DesenharLinhaTexto("7 - Remover Produto do Estoque", ConsoleColor.Yellow);
+                DesenharLinhaTexto("8 - Mostrar Itens Vendidos", ConsoleColor.Yellow);
                 DesenharLinhaSeparadora();
-                DesenharLinhaTexto("8 - Remover Item do Carrinho");
+                DesenharLinhaTexto("9 - Remover Item do Carrinho");
                 DesenharLinhaTexto("0 - Sair", ConsoleColor.Red);
                 DesenharBordaInferior();
 
@@ -60,8 +61,9 @@ namespace Shop
                     case 4: VerCarrinho(); break;
                     case 5: FinalizarCompra(); break;
                     case 6: AdicionarProdutoEstoque(); break;
-                    case 7: MostrarItensVendidos(); break;
-                    case 8: RemoverDoCarrinho(); break;
+                    case 7: RemoverProdutoEstoque(); break;
+                    case 8: MostrarItensVendidos(); break;
+                    case 9: RemoverDoCarrinho(); break;
                     case 0:
                         ExibirMensagem("Obrigado por utilizar o sistema. Saindo...", ConsoleColor.Magenta);
                         break;
@@ -303,6 +305,60 @@ namespace Shop
             estoque.Add(new Veiculo(tipoFormatado, nome, preco, quantidade));
             SalvarEstoque();
             ExibirMensagemSucesso($"{nome} foi adicionado ao estoque com {quantidade} unidades.");
+        }
+
+        static void RemoverProdutoEstoque()
+        {
+            Console.Clear();
+            DesenharBordaSuperior();
+            DesenharLinhaTexto("REMOVER PRODUTO DO ESTOQUE", ConsoleColor.Yellow, true);
+            DesenharLinhaSeparadora();
+
+            if (estoque.Count == 0)
+            {
+                DesenharLinhaTexto("Estoque vazio!");
+                DesenharBordaInferior();
+                return;
+            }
+
+            // Listar itens do estoque
+            for (int i = 0; i < estoque.Count; i++)
+            {
+                string itemInfo = $"{i + 1} - {estoque[i].Tipo} | {estoque[i].Nome} - R$ {estoque[i].Preco:N2} | Estoque: {estoque[i].Quantidade}";
+                DesenharLinhaTexto(itemInfo);
+            }
+            DesenharBordaInferior();
+            Console.WriteLine();
+
+            Console.Write("  Digite o número do produto que deseja remover: ");
+            if (int.TryParse(Console.ReadLine(), out int escolha) && escolha > 0 && escolha <= estoque.Count)
+            {
+                Veiculo item = estoque[escolha - 1];
+
+                Console.Write($"  Quantas unidades de {item.Nome} deseja remover? (Total = {item.Quantidade}) ");
+                if (!int.TryParse(Console.ReadLine(), out int qtdRemover) || qtdRemover <= 0)
+                {
+                    ExibirMensagemErro("Quantidade inválida!");
+                    return;
+                }
+
+                if (qtdRemover >= item.Quantidade)
+                {
+                    estoque.RemoveAt(escolha - 1);
+                    ExibirMensagemSucesso($"{item.Nome} removido completamente do estoque.");
+                }
+                else
+                {
+                    item.Quantidade -= qtdRemover;
+                    ExibirMensagemSucesso($"{qtdRemover} unidade(s) de {item.Nome} foram removidas do estoque.");
+                }
+
+                SalvarEstoque();
+            }
+            else
+            {
+                ExibirMensagemErro("Opção inválida!");
+            }
         }
 
         static void MostrarItensVendidos()
